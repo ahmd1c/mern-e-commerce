@@ -14,26 +14,41 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#root{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  /* i need a dark blue bg */
+  background: linear-gradient(to left , rgba(6, 39, 47, 0.966) , rgb(4, 18, 34));
+  background-repeat: no-repeat;
+  
+
+}
+
+a {
+  font-weight: 500;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.951);
+}
+
+li{
+  list-style: none;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 3em;
 }
 
 button {
@@ -45,25 +60,31 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.25s ease-in-out;
 }
 button:hover {
-  border-color: #646cff;
+
+  background-color: #242424;
+  color: rgba(255, 255, 255, 0.87);
+  border: 1px solid rgba(255, 255, 255, 0.87);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
+  
   button {
     background-color: #f9f9f9;
+    color: #213547;
   }
 }
