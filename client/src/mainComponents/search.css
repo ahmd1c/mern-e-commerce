@@ -1,0 +1,27 @@
+
+.search{
+    display : flex ;
+    align-items : center ;
+    gap: 5px;
+    width : fit-content;
+    background : rgb(29, 27, 27);
+    border-radius: 5px;
+    padding-right: 5px ;
+    width: 50%;
+}
+
+.search input{
+    border : none ;
+    padding: .4rem .5rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    width: 100%;
+    
+}
+
+@media(max-width : 970px){
+    header .search{
+        width: 100%;
+        order : 2;
+    }
+}
