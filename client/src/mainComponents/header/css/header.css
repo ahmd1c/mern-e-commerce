@@ -1,0 +1,78 @@
+header{
+    padding: .5rem 2rem;
+    
+}
+
+.upper-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.upper-section .logo a{
+    font-size: 2.8rem;
+    translate: 0 -3px;
+    color: aliceblue;
+}
+
+header .upper-section .user{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+header .menu-icon{
+    cursor: pointer;
+    width: fit-content;
+    display: none;
+}
+header .menu-icon > div{
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+header .menu-icon.active > div:nth-child(2){
+    display : none;
+}
+
+header .menu-icon.active > div:nth-child(1){
+    transform : rotate(45deg);
+    translate : 0 5px
+}
+
+header .menu-icon.active > div:nth-child(3){
+    transform : rotate(-45deg);
+    translate : 0 -3px
+}
+
+@media(max-width : 970px){
+    header{
+        padding: 1rem 1.5rem;
+        
+    }
+
+    header .upper-section .logo{
+        flex : 1;
+        translate: 1rem 0;
+    }
+
+    header .upper-section .logo a{
+        font-size: 2rem;
+        translate: 0 -1px;
+    }
+    
+    header .menu-icon{
+        display: block;
+    }
+    header .upper-section .user{
+        display: none;
+    }
+
+    
+}

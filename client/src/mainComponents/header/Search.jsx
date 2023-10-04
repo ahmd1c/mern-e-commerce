@@ -1,5 +1,5 @@
 
-import "./search.css"
+import "./css/search.css"
 
 
 

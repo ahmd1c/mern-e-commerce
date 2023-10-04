@@ -4,7 +4,7 @@ import NavLinks from "./NavLinks"
 import Search from "./Search"
 import UserNav from "./UserNav"
 // import {Link} from "react-router-dom"
-import "./header.css"
+import "./css/header.css"
 
 function Header() {
     const [active , setActive] = useState(false)
@@ -21,7 +21,10 @@ function Header() {
                     <div className="line2"></div>
                     <div className="line3"></div>
                 </div>
-                <a className="logo" href="/" >Ein-c</a>
+                <div className="logo">
+                <a  href="/" >Ein-c</a>
+
+                </div>
                 <Search />
                 <NavIcons />
                 <UserNav />
