@@ -1,0 +1,19 @@
+
+footer{
+    padding: 1rem;
+    /* background-color: rgba(6, 6, 34, 0.737); */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+footer .copy-rights{
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+footer .attribution a{
+    color : #17c798fc;
+    text-decoration: revert;
+}
