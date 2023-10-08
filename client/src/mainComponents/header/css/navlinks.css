@@ -5,21 +5,23 @@ nav{
     align-items: center;
     margin-top: 5px;
     width: 100%;
+    position: relative;
 }
 
-nav ul {
+nav > ul {
     display: flex;
     align-items: center;
     gap: 25px;
-    margin-right: 15px;
 
 }
 
 nav ul li a{
     position: relative;
+    font-size: 16px;
 }
 
-nav ul li a::before{
+nav ul li a::before,
+.nav-main-span::before{
     content: "";
     position: absolute;
     bottom: -5px;
@@ -32,7 +34,6 @@ nav ul li a::before{
 
 nav ul li a:hover::before{
     width: 100%;
-
 }
 
 nav .user{
@@ -44,6 +45,49 @@ nav .menu-icon{
 
 }
 
+nav .nav-category-list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    background-color: rgb(4, 20, 33);
+    padding: 15px 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    z-index: -100;
+    opacity: 0;
+    translate: 0;
+    transition: all 100ms ease-in-out ;
+}
+
+nav .nav-category-list.active {
+    translate: 0 30%;
+    opacity: 1;
+    z-index: 100;    
+}
+
+
+nav ul .nav-category-item span{
+    font-weight: 600;
+    display: flex;
+    cursor: pointer;
+    position: relative;
+}
+
+.nav-main-span:hover::before{
+    width: 78%;
+}
+
+nav .nav-category-list li a {
+    /* color: #000; */
+    font-size: 14px;
+}
+
+
+
 @media(max-width : 970px){
     nav {
         flex-direction: column;
@@ -53,7 +97,7 @@ nav .menu-icon{
         left: 0;
         width: 50%;
         height: 100vh;
-        background-color: blue;
+        background-color: #0e2837;
         z-index: 10;
         margin-top: 0;
         translate: -100% 0;
@@ -68,6 +112,34 @@ nav .menu-icon{
         align-items: center;
         margin-right: 0;
     }
+
+    nav.active .nav-category-item{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    nav.active .nav-category-item .nav-main-span{
+        margin-left: 15px;
+    }
+
+
+    nav.active .nav-category-list {
+        position: static;
+        flex-direction: column;
+        justify-content: normal;
+        height: 0;
+        padding: 0;
+        translate : 0
+    }
+
+    nav.active .nav-category-list.active {
+        height: 200px;
+        padding: 10px 3rem;
+
+
+    }
     nav .user{
         display: flex;
         flex-direction: column;
@@ -75,6 +147,12 @@ nav .menu-icon{
         gap: 10px;
         margin-top: 10px;
     }
+
+    nav .user button{
+        width: 100px;
+    }
+
+
     nav .menu-icon{
         display: block !important;
         position: absolute;
