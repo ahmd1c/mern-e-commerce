@@ -1,0 +1,111 @@
+.products-page-cont .filter-cont{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 20%;
+    padding-top : 1rem;
+    /* background-color: rgb(21, 2, 28); */
+    position: sticky;
+    top: 13%;
+    height: 82.5vh;
+    z-index: 10;
+}
+
+.products-page-cont .filter-cont .material-symbols-outlined{
+    display: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.products-page-cont .filter-cont h2{
+    color: rgb(253, 254, 255);
+    margin-right: .5rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+}
+
+.products-page-cont .filter-cont .price .filter-price-list{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem;
+    max-width: 100%;
+    margin-bottom: 1rem;
+
+}
+
+.products-page-cont .filter-cont .price .filter-price-list input{
+    width : 45px;
+    height: 35px;
+    font-size: 1rem;
+    padding-inline: 4px;
+
+}
+
+
+.products-page-cont .filter-cont .filter-category-list > div,
+.products-page-cont .filter-cont .filter-category-list > div > *,
+.products-page-cont .filter-cont .sort-by > div > div,
+.products-page-cont .filter-cont .sort-by > div > div > * {
+   margin: 5px;
+}
+
+.filter-cont .filter-buttons button{
+    margin-right: 10px;
+}
+
+.products-page-cont .filter-cont label{
+    color: aliceblue;
+}
+
+@media (max-width : 970px) {
+    .products-page-cont .filter-cont{
+       
+        translate: -150% 0;
+        position: fixed;
+        top: 13%;
+        bottom : 0;
+        width: 40%;
+        height : 100%;
+        z-index: 1000;
+        background-color: #041927;
+        transition: all 200ms ease-in-out;
+        overflow: auto;
+    }
+    .products-page-cont .filter-cont.active{
+        translate: 0 0;
+    }
+    .products-page-cont .filter-cont .material-symbols-outlined.active{
+        display: initial;
+        
+    }
+
+}
+@media (max-width : 550px) {
+    .products-page-cont .filter-cont{
+
+        width: 50%;
+        height : 90%;
+        padding-bottom: 2.5rem;
+    
+    }
+
+    .products-page-cont .filter-cont h2{
+        margin-bottom: 10px;
+    }
+
+    .products-page-cont .filter-cont .price .filter-price-list{
+        
+        align-items: normal;
+        flex-direction: column;
+        gap: .3rem;
+        max-width: 100%;
+        margin-bottom: .4rem;
+        margin-top: -1rem;
+    }
+    .filter-cont .filter-buttons button{
+        margin-top: 10px;
+    }
+
+}
