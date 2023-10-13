@@ -1,0 +1,43 @@
+.btn-primary{
+    background-color: rgba(14, 73, 212, 0.883);
+      display: block;
+      margin-top: 1rem;
+      color: rgb(255, 255, 255);
+      font-size: 1.1rem;
+      width: 200px;
+  }
+  
+  .btn-primary:hover{
+    background-color: rgba(142, 5, 240, 0.691) !important;
+    color: rgb(255, 255, 255) !important;
+  }
+  
+  .text-overflow{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  
+  }
+  
+  .product-rate{
+    display: flex;
+    align-items: center;
+    gap: 1.5px;
+  }
+
+  .rate-icon{
+    font-size : 15px ;
+    color : yellow ;
+    cursor : revert ;
+  }
+
+  main{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  
+  }
+
