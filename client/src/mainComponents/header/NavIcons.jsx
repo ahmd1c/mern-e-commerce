@@ -1,14 +1,15 @@
+/* eslint-disable react/prop-types */
 
 import "./css/navicons.css"
 
-function NavIcons() {
+function NavIcons({ setCartActive}) {
     return (
         
         <div className="icons">
             <span data-amount={0} className="material-symbols-outlined">
                 favorite
             </span>
-            <span data-amount={0} className="material-symbols-outlined">
+            <span onClick={()=> setCartActive(true)} data-amount={0} className="material-symbols-outlined">
                 shopping_cart
             </span>
         </div>
