@@ -1,0 +1,75 @@
+.admin-cont {
+    flex: 1;
+    display: flex;
+    padding: 1rem;
+    max-height: 78dvh;
+
+}
+
+
+
+.admin-cont .admin-aside {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: 20px;
+    justify-content: center;
+    padding: 1rem;
+    width: 170px;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    border-right: 1px solid gainsboro;
+    background-color: black;
+
+
+}
+
+.admin-cont .admin-aside>div {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 8px;
+    background-color: rgb(33, 32, 32);
+    border-radius: 8px;
+    transition: 150ms all ease-in-out;
+
+}
+
+.admin-cont .admin-aside>div:hover {
+    background-color: rgb(65, 65, 65);
+
+}
+
+
+.admin-cont .admin-aside>div>* {
+    cursor: pointer;
+}
+
+.admin-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+    flex-shrink: 8;
+}
+
+@media (max-width : 1100px) {
+
+    .admin-cont {
+        
+        padding-left: .3rem;
+    
+    }
+
+    .admin-cont .admin-aside {
+
+        width: fit-content;
+        padding: 1rem .5rem;
+
+    }
+
+    .admin-cont .admin-aside div > h5 {
+        display: none;
+    }
+}
