@@ -1,0 +1,9 @@
+.products-page-cont{
+    flex: 1;
+    display: flex;
+    padding: 1.5rem 1rem;
+    align-items: flex-start;
+
+}
+
+
