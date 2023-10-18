@@ -1,6 +1,8 @@
 header{
     padding: .5rem 2rem;
-    
+    position: sticky;
+    top: 0;
+    background-color: #041927;
 }
 
 .upper-section{
@@ -14,7 +16,7 @@ header{
 .upper-section .logo a{
     font-size: 2.8rem;
     translate: 0 -3px;
-    color: aliceblue;
+    color: rgb(255, 255, 255);
 }
 
 header .upper-section .user{
