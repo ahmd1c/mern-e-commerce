@@ -6,7 +6,7 @@ import { useState } from "react"
 // eslint-disable-next-line react/prop-types
 function NavLinks({ handleAsideNav, active }) {
 
-  const [categList , setCategList] = useState(false)
+  const [categList, setCategList] = useState(false)
 
   return (
     <nav className={active ? "active" : null}>
@@ -18,7 +18,11 @@ function NavLinks({ handleAsideNav, active }) {
       <ul>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/products">Products</NavLink></li>
-        <li onClick={()=> setCategList((prev)=> !prev)} className="nav-category-item"><span className="nav-main-span">Categories <span className="material-symbols-outlined">
+        <li
+          onClick={(e) => {
+            if (e.target.nodeName === "SPAN") setCategList((prev) => !prev)
+          }} 
+        className="nav-category-item"><span className="nav-main-span">Categories <span className="material-symbols-outlined">
           arrow_drop_down
         </span></span>
           <ul className={`nav-category-list ${categList ? "active" : ""}`}>
