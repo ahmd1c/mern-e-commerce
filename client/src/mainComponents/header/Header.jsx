@@ -5,13 +5,16 @@ import Search from "./Search"
 import UserNav from "./UserNav"
 // import {Link} from "react-router-dom"
 import "./css/header.css"
+import Cart from "../cart/Cart"
 
 function Header() {
     const [active , setActive] = useState(false)
+    const [cartActive , setCartActive] = useState(false)
 
     const handleAsideNav = ()=>{
         setActive(!active)
     }
+    
 
     return (
         <header>
@@ -26,11 +29,12 @@ function Header() {
 
                 </div>
                 <Search />
-                <NavIcons />
+                <NavIcons  setCartActive={setCartActive}/>
                 <UserNav />
 
             </div>
                 <NavLinks active={active} handleAsideNav={handleAsideNav} />
+                <Cart cartActive={cartActive} setCartActive={setCartActive}/>
         </header>
     )
 }
