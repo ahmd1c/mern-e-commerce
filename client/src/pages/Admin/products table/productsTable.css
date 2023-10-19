@@ -1,0 +1,65 @@
+
+.products-table-cont{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.products-table-cont table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: rgb(4, 4, 32);
+    border: 1px solid gray;
+    
+}
+
+.products-table-cont table th,
+.products-table-cont table td{
+    padding: 1rem 1rem;
+    max-width: 180px;
+    
+}
+
+.products-table-cont table td h5{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} 
+
+
+.products-table-cont table th:nth-child(1),
+.products-table-cont table td:nth-child(1){
+    width: 20px;
+    line-height: 0;
+    padding-inline: 1rem .4rem;
+}
+
+
+.products-table-cont table th:nth-child(2){
+    width: 80px;
+}
+
+.products-table-cont table th{
+    text-align: left;
+    border-bottom: 1px solid gray;
+}
+
+table .table-img {
+    width: 80px;
+}
+
+table .table-img img{
+    width: 100%;
+}
+
+.products-table-cont table td div:has(span) {
+    display: flex;
+    gap: 15px;
+}
+
+
