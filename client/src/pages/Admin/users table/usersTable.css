@@ -1,0 +1,67 @@
+.users-table-cont{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.users-table-cont > h2{
+    background-color: rgb(1, 1, 12);
+    box-shadow: 0 0 8px rgb(61, 51, 51);
+    padding: 1.5rem 2rem;
+    color: #f9f6f6;
+    border-radius: 8px;
+
+}
+
+.users-table-cont table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: rgb(4, 4, 32);
+    border: 1px solid gray;
+    
+}
+
+.users-table-cont table th,
+.users-table-cont table td{
+    padding: 1rem 1rem;
+    color: #ffffff;
+    white-space: nowrap;
+    
+}
+
+.users-table-cont table th{
+    text-align: left;
+    border-bottom: 1px solid gray;
+    line-height: 0;
+}
+
+
+.users-table-cont table td > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.users-table-cont table td > div div {
+    display: flex;
+    flex-direction: column;
+}
+
+.users-table-cont table td div div:has(img){
+    width: 40px;
+    flex-shrink: 0;
+}
+
+.users-table-cont table td div div:has(img) img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.users-table-cont table td button {
+    padding: .5rem;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    margin-left: 12px;
+}
