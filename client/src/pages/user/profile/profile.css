@@ -1,0 +1,96 @@
+
+.profile-cont form{
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+   align-items: center;
+   padding-top: 2rem;
+}
+
+.profile-cont form .profile-img {
+    width: 150px;
+    position: relative;
+}
+
+.profile-cont form .profile-img img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.profile-cont form .profile-img label{
+    position: absolute;
+    bottom: 18px;
+    right: 20px;
+}
+
+.profile-cont form .profile-img label input{
+    display: none;
+}
+
+.profile-cont form .profile-img label span{
+    background-color: rgb(28, 27, 27);
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.profile-cont form .profile-img label span:hover{
+    background-color: rgb(62, 58, 58);
+
+}
+
+.profile-cont form div:not(.profile-img) {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-left: -35px;
+}
+
+.profile-cont form div:not(.profile-img) input {
+    font-weight: 600;
+    width: 300px;
+}
+.profile-cont form div:not(.profile-img) label {
+    font-weight: 600;
+    
+}
+
+.profile-cont .delete-account h3 {
+    background-color: rgba(212, 14, 14, 0.911);
+    width: 90%;
+    margin: auto;
+    padding: 1rem;
+    color: rgb(255, 255, 255);
+    border-radius: 8px;
+}
+
+.profile-cont .delete-account p {
+    color: rgb(222, 32, 32);
+    font-weight: bold;
+    width: 90%;
+    margin: auto;
+}
+
+.profile-cont .delete-account button {
+    background-color: rgb(190, 41, 41);
+}
+
+.profile-cont .delete-account button:hover {
+    background-color: rgb(255, 0, 0);
+
+}
+
+
+@media (max-width : 620px) {
+    .profile-cont form div:not(.profile-img) {
+        flex-direction: column;
+        gap: 10px;
+        align-items: normal;
+        margin-left: 0;
+    }
+    .profile-cont .delete-account p {
+        font-size: 12px;
+       
+    }
+    
+    
+}
