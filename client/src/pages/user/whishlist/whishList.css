@@ -1,0 +1,13 @@
+.whish-cont{
+    padding: 1rem;
+   
+}
+.whish-cont > div > h2{
+    display: none;
+}
+
+.whish-cont > div > div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
