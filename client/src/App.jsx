@@ -8,6 +8,7 @@ import Product from './pages/singleProduct/Product'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import Dashboard from './pages/Admin/Dashboard/Dashboard'
+import Settings from './pages/user/settings/Settings'
 
 function App() {
   
@@ -15,10 +16,11 @@ function App() {
     <Route path="/"  element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path="products" element={<Products />} />
-      <Route path="products/:id" element={<Product />} />
+      <Route path="product/:id" element={<Product />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/admin" element={<Dashboard />} />
+      <Route path="/user" element={<Settings />} />
     </Route>
   ))
 
