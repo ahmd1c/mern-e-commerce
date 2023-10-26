@@ -2,13 +2,16 @@
 import "./productCard.css";
 
 function ProductCard({ product }) {
+    const handleNavigation = ()=>{
+        window.location.href = `/products/${product.id}`;
+    }
     return (
         <div className="product-card">
             <div className="product-card-img">
-                <img src={product.image} alt="" />
+                <img onClick={handleNavigation} loading="lazy" src={product.image} alt="" />
             </div>
 
-            <h3 title={product.title} className="text-overflow">
+            <h3 onClick={handleNavigation} title={product.title} className="text-overflow">
                 {product.title}
             </h3>
 
