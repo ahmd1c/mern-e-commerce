@@ -1,0 +1,73 @@
+.categories-list-cont {
+    flex: 1;
+    padding: 1rem;
+}
+.title-add-new {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(1, 1, 12);
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 8px rgb(61, 51, 51);
+    color: #f9f6f6;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.title-add-new button{
+    margin-top: 0;
+}
+
+
+.categories-wrapper {
+    background-color: rgb(1, 1, 12);
+    box-shadow: 0 0 8px rgb(61, 51, 51);
+    margin-bottom: 3rem;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.single-category {
+    padding: .5rem;
+    border-radius: 8px;
+    text-transform: capitalize;
+    background-color: rgb(39, 39, 40);
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+
+/* That will be class active on the single category item but now making it as first child for designing */
+.single-category:first-child{
+    background-color: rgb(28, 28, 88);
+
+}
+
+.subcategories-wrapper {
+    background-color: rgb(1, 1, 12);
+    box-shadow: 0 0 8px rgb(61, 51, 51);
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.single-sub-category {
+    padding: .5rem;
+    border-radius: 8px;
+    text-transform: capitalize;
+    background-color: rgb(39, 39, 40);
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.categories-list-cont div span {
+    color: red;
+    
+}
