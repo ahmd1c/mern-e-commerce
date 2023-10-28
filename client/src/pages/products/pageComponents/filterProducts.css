@@ -11,6 +11,10 @@
     z-index: 10;
 }
 
+.products-page-cont > span {
+    display: none;
+}
+
 .products-page-cont .filter-cont .material-symbols-outlined{
     display: none;
     width: fit-content;
@@ -60,6 +64,10 @@
 }
 
 @media (max-width : 970px) {
+    .products-page-cont > span {
+        display: initial;
+    }
+    
     .products-page-cont .filter-cont{
        
         translate: -150% 0;
