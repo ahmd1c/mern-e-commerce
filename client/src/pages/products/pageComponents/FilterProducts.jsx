@@ -7,7 +7,7 @@ function FilterProducts() {
 
   return (
     <>
-    <span style={{position : "fixed" , display : showFilter ? "none" : "initial"}} onClick={()=> setShowFilter(true)} className="material-symbols-outlined">
+    <span style={{position : "fixed"}} onClick={()=> setShowFilter(true)} className="material-symbols-outlined">
         tune
       </span>
     <div className={`filter-cont ${showFilter ? "active" : ""}`}>
