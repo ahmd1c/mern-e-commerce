@@ -1,0 +1,79 @@
+.orders-table-cont{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.orders-table-cont table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: rgb(4, 4, 32);
+    border: 1px solid gray;
+    
+}
+
+.orders-table-cont table th,
+.orders-table-cont table td{
+    padding: 1rem 1rem;
+    max-width: 180px;
+    color: #ffffff;
+    
+}
+
+.orders-table-cont table th{
+    text-align: left;
+    border-bottom: 1px solid gray;
+}
+
+
+.orders-table-cont table td div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.orders-table-cont table td div div:has(img){
+    width: 40px;
+    flex-shrink: 0;
+}
+
+.orders-table-cont table td div div:has(img) img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.orders-table-cont table td button {
+    padding: .5rem;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+
+}
+
+.orders-table-cont table td:has(span){
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.orders-table-cont table td span {
+    padding: .5rem;
+    border-radius: 14px;
+    background-color: rgb(130, 98, 3);
+    color: #ffffff;
+}
+
+
+.orders-table-cont table td span:last-child {
+    background-color: rgb(39, 36, 36);
+    border: 1px transparent solid;
+
+}
+
+.orders-table-cont table td span:last-child:hover{
+    border: 1px white solid;
+}
