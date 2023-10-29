@@ -1,6 +1,10 @@
 import { useCallback, useState } from "react"
 import AddProduct from "../Add product/AddProduct"
 import "./dashboard.css"
+import ProductsTable from "../products table/ProductsTable"
+import OrdersTable from "../orders table/OrdersTable"
+import UsersTable from "../users table/UsersTable"
+import CategoriesList from "../categories/CategoriesList"
 
 
 function Dashboard() {
@@ -59,7 +63,11 @@ function Dashboard() {
                 </div>
             </div>
             <div className="admin-main">
+                {products ? <ProductsTable /> : null}
                 {addProduct ? <AddProduct /> : null}
+                {orders ? <OrdersTable /> : null}
+                {users ? <UsersTable /> : null}
+                {categories ? <CategoriesList /> : null}
             </div>
         </div>
     )
