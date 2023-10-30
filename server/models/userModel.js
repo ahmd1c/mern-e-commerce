@@ -41,6 +41,14 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: "profile.png",
         },
+        role: {
+            type: String,
+            enum: {
+                values: ["admin", "user"],
+                message: "{VALUE} is not supported"
+            },
+            default: "user",
+        }
     },
     { timestamps: true }
 );
