@@ -1,0 +1,71 @@
+.embla {
+    border-radius: 10px;
+    padding: 1rem;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.016);
+    
+}
+
+.embla__viewport {
+    overflow: hidden;
+    width: 95%;
+    margin: 0 auto;
+    padding: 2rem;
+
+}
+
+.embla__container {
+    display: flex;
+    gap: 1rem;
+
+}
+
+
+.embla__buttons button {
+    font-size: 2rem;
+    font-weight: 900;
+    background-color: rgb(28, 25, 30);
+    padding: .6rem;
+    outline: 0px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+}
+
+.embla__buttons button:nth-child(1){
+    left: 0;
+}
+
+.embla__buttons button:nth-child(2){
+    right: 0;
+}
+
+
+
+.embla__buttons button:focus,
+.embla__buttons button:focus-visible {
+    outline: none;
+}
+
+
+.embla__buttons button svg {
+    fill: rgb(255, 255, 255);
+
+}
+@media (max-width : 720px) {
+    .embla {
+        padding: .5rem;
+        
+    }
+    
+        
+    .embla__container > div:first-child {
+        margin-left: 10px;
+    }
+    
+    
+    
+}
