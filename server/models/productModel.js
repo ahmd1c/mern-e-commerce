@@ -6,7 +6,8 @@ const productSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: [true, "product must have name"],
-        minlength: [2, "To short name"]
+        minlength: [2, "name must be at least 2 characters"],
+        maxlength: [100, "name must be at most 100 characters"],
     },
     amount: {
         type: Number,
@@ -54,24 +55,12 @@ const productSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Category",
         required: [true, "product must have category"],
-        validate: {
-            validator: async function (v) {
-            const category = await Category.findById(v);
-                return !!category;
-
-            },
-            message: "category is not valid",
-        }},
+        
+        },
         subCategory: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Category",
-            validate: {
-                validator: async function (v) {
-                    const subCategory = await Category.findById(v);
-                    return !!subCategory;
-                },
-                message: "sub category is not valid",
-            }
+            
         },
         cover: {
             type: String,
