@@ -29,7 +29,7 @@ exports.verifyToken = async (req, res, next) => {
 }
 
 exports.verifyAdmin = asyncHandler(async (req, res, next) => {
-
+    console.log("admin");
     this.verifyToken(req , res , ()=>{
         if (req.user.role !== "admin") {
             return res.status(401).json({
@@ -43,12 +43,10 @@ exports.verifyAdmin = asyncHandler(async (req, res, next) => {
 })
 
 exports.validateObjectId = (id) => {
+    console.log("id");
+
     const isValid = mongoose.Types.ObjectId.isValid(id);
     if (!isValid) {
-        return res.status(400).json({
-            success: false,
-            message: "invalid id"
-        })
+        throw new Error("invalid id");
     }
-
 }
