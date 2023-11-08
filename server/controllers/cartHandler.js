@@ -18,10 +18,10 @@ exports.addToCart = asyncHandler( async (req, res) => {
         });
     }
 
-    if (product.amount < quantity) {
+    if (product.quantity < quantity) {
         return res.status(400).json({
             success: false,
-            message: product.amount > 0 ? `Only ${product.amount} left` : "Product out of stock"
+            message: product.quantity > 0 ? `Only ${product.quantity} left` : "Product out of stock"
         });
     }
 
@@ -35,7 +35,8 @@ exports.addToCart = asyncHandler( async (req, res) => {
             productsList: [
                 {
                     productId,
-                    quantity
+                    quantity,
+                    price : product.afterPrice,
                 }
             ],
             totalPrice: quantity * product.afterPrice
@@ -55,8 +56,10 @@ exports.addToCart = asyncHandler( async (req, res) => {
             // IF PRODUCT DOES NOT EXIST THEN ADD THE PRODUCT TO THE CART
             userCart.productsList.push({
                 productId,
-                quantity
+                quantity,
+                price : product.afterPrice
             });
+            
             userCart.totalPrice += quantity * product.afterPrice;
         }
 
