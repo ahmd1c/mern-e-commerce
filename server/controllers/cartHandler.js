@@ -3,7 +3,7 @@ const Cart = require("../models/cartModel");
 const Product = require("../models/productModel");
 const asyncHandler = require("../utils/asyncHandler");
 
-exports.addToCart = asyncHandler( async (req, res) => {
+exports.addToCart = asyncHandler( async (req, res , next) => {
 
     // GET THE PRODUCT ID FROM THE BODY
     const { productId, quantity } = req.body;
@@ -74,7 +74,7 @@ exports.addToCart = asyncHandler( async (req, res) => {
 
 })
 
-exports.getCart = asyncHandler( async (req, res) => {
+exports.getCart = asyncHandler( async (req, res , next) => {
 
     const userCart = await Cart.findOne({ userId: req.user.id }).populate("productsList.productId");
 
@@ -95,7 +95,7 @@ exports.getCart = asyncHandler( async (req, res) => {
 
 
 
-exports.clearCart = asyncHandler( async (req, res) => {
+exports.clearCart = asyncHandler( async (req, res , next) => {
     await Cart.findOneAndDelete({ userId: req.user.id });
     res.status(200).json({
         success: true,
