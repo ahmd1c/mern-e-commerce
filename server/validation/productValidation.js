@@ -43,14 +43,14 @@ exports.createProductValidator = asyncHandler(async (req, res, next) => {
                 "string.empty": "subCategory is required",
             }),
 
-        amount: joi
+        quantity: joi
             .number()
             .min(1)
             .max(4000)
             .required()
             .messages({
-                "number.base": "amount is required",
-                "number.min": "amount must be at least 1",
+                "number.base": "quantity is required",
+                "number.min": "quantity must be at least 1",
                 "number.max": "too many of product at this time",
             }),
 
@@ -100,12 +100,12 @@ exports.updateProductValidator = asyncHandler(async (req, res, next) => {
 
         subCategory: joi.string(),
 
-        amount: joi
+        quantity: joi
             .number()
             .min(1)
             .max(4000)
             .messages({
-                "number.min": "amount must be at least 1",
+                "number.min": "quantity must be at least 1",
                 "number.max": "too many of product at this time",
             }),
 
