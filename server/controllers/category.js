@@ -1,5 +1,6 @@
 const Category = require("../models/categoryModel");
 const asyncHandler = require("../utils/asyncHandler");
+const Product = require("../models/productModel");
 
 exports.getCategories = asyncHandler(async (req, res) => {
     const categories = await Category.find();
@@ -35,6 +36,7 @@ exports.updateCategory = asyncHandler(async (req, res) => {
 exports.deleteCategory = asyncHandler(async (req, res) => {
 
     const deletedCategories = await Category.deleteMany({$or : [{parentCategory: req.params.id} , {_id: req.params.id}]});
+    const deletedProducts = await Product.deleteMany({$or : [{category: req.params.id} , {subCategory: req.params.id}]});
     if(deletedCategories.deletedCount === 0){
         return res.status(404).json({
             success: false,
