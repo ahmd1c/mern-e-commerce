@@ -2,10 +2,11 @@ import { NavLink } from "react-router-dom"
 import UserNav from "./UserNav"
 import "./css/navlinks.css"
 import { useState } from "react"
+import { useSelector } from "react-redux"
 
 // eslint-disable-next-line react/prop-types
 function NavLinks({ handleAsideNav, active }) {
-
+  const user = useSelector((state) => state.user)
   const [categList, setCategList] = useState(false)
 
   return (
@@ -21,10 +22,10 @@ function NavLinks({ handleAsideNav, active }) {
         <li
           onClick={(e) => {
             if (e.target.nodeName === "SPAN") setCategList((prev) => !prev)
-          }} 
-        className="nav-category-item"><span className="nav-main-span">Categories <span className="material-symbols-outlined">
-          arrow_drop_down
-        </span></span>
+          }}
+          className="nav-category-item"><span className="nav-main-span">Categories <span className="material-symbols-outlined">
+            arrow_drop_down
+          </span></span>
           <ul className={`nav-category-list ${categList ? "active" : ""}`}>
             <li><NavLink to="/categories">Category 1</NavLink></li>
             <li><NavLink to="/categories">Category 2</NavLink></li>
@@ -33,6 +34,15 @@ function NavLinks({ handleAsideNav, active }) {
             <li><NavLink to="/categories">Category 5</NavLink></li>
           </ul>
         </li>
+
+        {user?.role === "admin" && (
+          <li id="admin">
+            <NavLink to="/admin">
+              Dashboard
+            </NavLink>
+          </li>
+        )}
+
       </ul>
       <UserNav />
 
