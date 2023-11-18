@@ -1,18 +1,30 @@
 /* eslint-disable react/prop-types */
 import "./productCard.css";
+import { useDispatch } from "react-redux";
+import { addCartItem } from "../../redux/cartReducer";
 
 function ProductCard({ product }) {
-    const handleNavigation = ()=>{
-        window.location.href = `/products/${product.id}`;
+
+    
+    const dispatch = useDispatch();
+
+    const handleAddToCart = () => {
+        const { id , title , price , image } = product;
+        const item = { id , title , price , image , quantity : 1 };
+        dispatch(addCartItem(item));
     }
+
+    
     return (
         <div className="product-card">
-            <div className="product-card-img">
-                <img onClick={handleNavigation} loading="lazy" src={product.image} alt="" />
-            </div>
+            <a href={`/product/${product.id}`} className="product-card-img">
+                <img  loading="lazy" src={product.image} alt="product" />
+            </a>
 
-            <h3 onClick={handleNavigation} title={product.title} className="text-overflow">
-                {product.title}
+            <h3 title={product.title} className="text-overflow">
+                <a href={`/product/${product.id}`}>
+                    {product.title}
+                </a>
             </h3>
 
             <div className="product-card-info">
@@ -23,7 +35,7 @@ function ProductCard({ product }) {
                 <h3>{product.price} $</h3>
             </div>
             <p className="text-overflow">{product.description}</p>
-            <button className="btn-primary">Add to cart</button>
+            <button onClick={handleAddToCart} className="btn-primary">Add to cart</button>
         </div>
     );
 }
