@@ -2,20 +2,30 @@ import { NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { logUserOut } from "../../redux/userReducer";
 import "./css/userNav.css"
+import { ToastContainer , toast } from "react-toastify";
 
-// eslint-disable-next-line react/prop-types
 function UserNav() {
 
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
     const handleLogout = () => {
-        // fetch logout
-        dispatch(logUserOut());
+    fetch("http://localhost:5000/api/v1/user/signout",{credentials:"include"}).then(res => res.json())
+        .then(data => {
+            if(data.success) {
+                dispatch(logUserOut());
+                toast.success("You are logged out")
+                window.location.reload();
+            }else {
+                toast.error('error logging out')
+                window.location.reload();
+            }
+        })
     }
 
     return (
-        // eslint-disable-next-line react/prop-types
-        user?.email ? (
+        <>
+        <ToastContainer />
+        {user?.email ? (
             <div className="user">
                 
                 <NavLink to="/user">
@@ -35,7 +45,9 @@ function UserNav() {
                     <NavLink to="/register">register</NavLink>
                 </button>
             </div>
-    )
+    }
+        </>
+        )
 }
 
 export default UserNav
