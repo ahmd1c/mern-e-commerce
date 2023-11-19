@@ -88,12 +88,7 @@ nav .nav-category-list li a {
     font-size: 14px;
 }
 
-#admin{
-    background-color:  rgb(15, 53, 83);
-    padding: 7px;
-    box-shadow: 0px 0px 10px rgba(2, 91, 255, 0.567);
-    border-radius: 5px;
-}
+
 
 @media(max-width : 970px){
     nav {
@@ -167,8 +162,5 @@ nav .nav-category-list li a {
         right : 7%;
         
 
-    }
-    #admin{
-        margin-bottom: 20px;
     }
 }
