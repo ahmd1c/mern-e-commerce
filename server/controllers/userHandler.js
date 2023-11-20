@@ -32,6 +32,8 @@ exports.signUp = asyncHandler(async (req, res, next) => {
         password
     })
 
+    newUser.password = undefined;
+
     // create jwt and cookie
     createTokenAndCookie(newUser._id, res)
     res.status(201).json({
@@ -53,6 +55,8 @@ exports.signIn = asyncHandler(async (req, res, next) => {
             message: "invalid email or password"
         })
     }
+
+    findUser.password = undefined;
 
     createTokenAndCookie(findUser._id, res)
 
