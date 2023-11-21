@@ -7,9 +7,9 @@ const productSchema = new mongoose.Schema({
         trim: true,
         required: [true, "product must have name"],
         minlength: [2, "name must be at least 2 characters"],
-        maxlength: [100, "name must be at most 100 characters"],
+        maxlength: [200, "name must be at most 200 characters"],
     },
-    amount: {
+    quantity: {
         type: Number,
         required: [true, "amount is required"],
         min: [1, "amout must be at least 1"],
@@ -23,9 +23,9 @@ const productSchema = new mongoose.Schema({
         minlength: [2, "To short description"],
     },
 
-    beforePrice: Number,
+    previousPrice: Number,
 
-    afterPrice: {
+    currentPrice: {
         type: Number,
         required: [true, "price is required"],
     },
@@ -62,11 +62,10 @@ const productSchema = new mongoose.Schema({
             ref: "Category",
             
         },
-        cover: {
+        image: {
             type: String,
-            required: [true, "product must have cover"],
+            required: [true, "product must have image"],
         },
-        images: [String]
     
 }, { timestamps: true })
 
