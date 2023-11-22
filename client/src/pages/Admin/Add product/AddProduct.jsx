@@ -64,6 +64,7 @@ function AddProduct() {
             formRef.current.reset();
             URL.revokeObjectURL(image);
             setImage("");
+            setSelectedCategory(categories[0]._id);
         }
     }
 
