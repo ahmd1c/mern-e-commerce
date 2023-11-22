@@ -102,6 +102,11 @@
     margin-bottom: 10px;
 }
 
+.add-product-cont form .inputs .form-group div select{
+    width: 80%;
+    height: 22.5px;
+}
+
 
 .add-product-cont form .inputs > div:not([class="form-group"]){
     display: flex;
