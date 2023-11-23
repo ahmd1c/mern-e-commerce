@@ -85,8 +85,11 @@ nav ul .nav-category-item span{
 
 nav .nav-category-list li a {
     /* color: #000; */
-    font-size: 14px;
+    font-size: 15px;
+    text-transform: capitalize;
+    letter-spacing: .5px;
 }
+
 
 #admin{
     background-color:  rgb(15, 53, 83);
