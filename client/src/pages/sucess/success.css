@@ -1,0 +1,36 @@
+
+.success-cont {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.success-cont h1{
+    font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+.success-cont img{
+    width: 270px;
+    height: 270px;
+    object-fit: contain;
+}
+
+.success-cont a {
+    background-color: rgba(9, 9, 226, 0.472);
+    box-shadow: 0 0 8px rgb(61, 51, 51);
+    padding: 1rem;
+    color: #f9f6f6;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 2rem;
+    margin-top: 1rem;
+}
+
+.success-cont a:hover {
+    background-color: rgba(1, 196, 255, 0.63);
+    box-shadow: 0 3px 8px rgb(55, 51, 51);
+}
