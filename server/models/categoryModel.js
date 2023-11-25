@@ -6,8 +6,9 @@ const categorySchema = new mongoose.Schema(
             type: String,
             trim: true,
             unique: true,
+            lowercase: true,
             required: [true, "name is required"],
-            maxLength: [20, "Too long name"],
+            maxLength: [30, "Too long name"],
             minLength: [2, "Too short name"],
         },
         parentCategory : {
