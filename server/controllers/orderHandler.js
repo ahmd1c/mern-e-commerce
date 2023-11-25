@@ -15,13 +15,20 @@ exports.checkoutHandler = asyncHandler(async (req, res , next) => {
         duration: 'once',
     });
 
-    const userCart = await Cart.findOne({ user: req.user.id });
+    const userCart = await Cart.findOne({ userId: req.user.id });
+    if (!userCart) {
+        return res.status(400).json({
+            success: false,
+            message: "Cart not found"
+        });
+    }
+
 
     const productListIds = userCart.productsList.map((product) => {
         return product.productId
     })
 
-    const products = await Product.find({ _id: { $in: productListIds } }).select("name afterPrice quantity");
+    const products = await Product.find({ _id: { $in: productListIds } }).select("name currentPrice quantity");
 
 
     //CHECKING IF THE PRODUCT IS AVAILABLE IN THE STORE OR NOT
@@ -33,7 +40,7 @@ exports.checkoutHandler = asyncHandler(async (req, res , next) => {
             notAvailable.push({
                 name: product.name,
                 quantity: productQuantity,
-                notAvailableQuantity: product.quantity
+                availableQuantity: product.quantity
             })
         }
     })
@@ -41,7 +48,7 @@ exports.checkoutHandler = asyncHandler(async (req, res , next) => {
     if (notAvailable.length > 0) {
         return res.status(400).json({
             success: false,
-            message: notAvailable.map((i) => `${i.name} only have ${i.notAvailableQuantity} available`,).join(". ")
+            message: notAvailable.map((i) => `${i.name} only have ${i.availableQuantity} available`,).join(". ")
         });
     }
 
@@ -52,7 +59,7 @@ exports.checkoutHandler = asyncHandler(async (req, res , next) => {
                 product_data: {
                     name: product.name
                 },
-                unit_amount: product.afterPrice * 100
+                unit_amount: product.currentPrice * 100
             },
             quantity: userCart.productsList.find((p) => p.productId.toString() === product._id.toString()).quantity
         }
@@ -66,19 +73,19 @@ exports.checkoutHandler = asyncHandler(async (req, res , next) => {
             coupon: coupon.id
         }],
         billing_address_collection: 'required',
-        success_url: `${YOUR_DOMAIN}/success.html`,
-        cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+        success_url: `${process.env.YOUR_DOMAIN}/success`,
+        cancel_url: `${process.env.YOUR_DOMAIN}/cancel`,
     });
 
     const order = await Order.create({
         user: req.user.id,
-        products: userCart.productsList,
+        products: productListIds,
         totalPrice: userCart.totalPrice,
         stripeSessionId: session.id,
 
     });
 
-    res.status(200).json({ url: session.url });
+    res.status(201).json({ url: session.url });
 
 });
 
@@ -86,7 +93,14 @@ exports.checkoutHandler = asyncHandler(async (req, res , next) => {
 
 exports.orderSuccess = asyncHandler(async (req, res , next) => {
 
-    const order = await Order.findOne({ user: req.user.id });
+    const order = await Order.findOne({ user: req.user.id }).sort({ createdAt: -1 }).limit(1);
+
+    if (!order) {
+        return res.status(404).json({
+            success: false,
+            message: "Not found"
+        });
+    }
 
     const session = await stripe.checkout.sessions.retrieve(order.stripeSessionId);
 
@@ -95,14 +109,37 @@ exports.orderSuccess = asyncHandler(async (req, res , next) => {
     order.address = session.customer_details.address.line1;
     order.status = "processing";
 
-    await order.save();
+
+    const cart = await Cart.findOne({ userId: req.user.id });
+    const products = await Product.find({ _id: { $in: order.products } });
+    
+    const bulkOps = products.map((product) => {
+        const quantity = cart.productsList.find((p) => p.productId.toString() === product._id.toString()).quantity;
+        return {
+            updateOne: {
+                filter: { _id: product._id },
+                update: { $inc: { quantity: -quantity } }
+            }
+        };
+    });
+    
+    const updatePromises = [ order.save() , cart.deleteOne() , Product.bulkWrite(bulkOps) ];
+
+    await Promise.all(updatePromises).catch((err) => {
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        });
+    });
 
     res.status(200).json({
         success: true,
         message: "Order placed successfully",
+        order
     })
 
 })
+
 
 exports.orderCancel = asyncHandler(async (req, res , next) => {
     const order = await Order.findOneAndDelete({ user: req.user.id });
@@ -111,6 +148,7 @@ exports.orderCancel = asyncHandler(async (req, res , next) => {
         message: "Order has been cancelled",
     })
 })
+
 
 exports.getUserOrder = asyncHandler(async (req, res , next) => {
     const order = await Order.findOne({ user: req.user.id });
@@ -126,6 +164,7 @@ exports.getUserOrder = asyncHandler(async (req, res , next) => {
     })
 })
 
+
 exports.getUserOrders = asyncHandler(async (req, res , next) => {
     const orders = await Order.find({ user: req.user.id });
     if (!orders) {
@@ -140,6 +179,7 @@ exports.getUserOrders = asyncHandler(async (req, res , next) => {
     })
 })
 
+
 exports.getAllOrders = asyncHandler(async (req, res , next) => {
     const orders = await Order.find().sort({ createdAt: -1 });
     if (!orders) {
@@ -153,6 +193,7 @@ exports.getAllOrders = asyncHandler(async (req, res , next) => {
         orders
     })
 })
+
 
 exports.updateOrder = asyncHandler(async (req, res , next) => {
 
