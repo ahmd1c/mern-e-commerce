@@ -1,17 +1,16 @@
 /* eslint-disable react/prop-types */
 import "./modal.css"
 
-function Modal( { setShowModal  , children , handleSubmit} ) {
+function Modal( { setShowModal  , children } ) {
 
     
 
     return (
         <div className="overlay">
-            <form onSubmit={handleSubmit} className="modal">
+            <div className="modal">
                 {children}
-                <button type="submit"> Submit </button>
                 <span className="close"  onClick={() => setShowModal(false)}> X </span>
-            </form>
+            </div>
         </div>
     )
 }
