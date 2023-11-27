@@ -3,8 +3,12 @@ import correct from "../../assets/correct.webp"
 import { NavLink } from "react-router-dom"
 import { useEffect } from "react"
 import { ToastContainer, toast } from "react-toastify"
+import { useDispatch } from "react-redux"
+import { clearCart } from "../../redux/cartReducer"
 
 function Success() {
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const handleSuccess = async () => {
@@ -17,6 +21,7 @@ function Success() {
             }
             const data = await res.json();
             if (data.success) {
+                dispatch(clearCart())
                 toast.success(data.msg);
                 console.log(data);
             }
