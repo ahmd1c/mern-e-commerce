@@ -1,0 +1,35 @@
+.failed-order-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .failed-order-page h1 {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  
+  .failed-order-page p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .failed-order-page a {
+    background-color: rgba(72, 72, 237, 0.472);
+    box-shadow: 0 0 8px rgb(61, 51, 51);
+    padding: 1rem;
+    color: #f9f6f6;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.failed-order-page a:hover {
+    background-color: rgba(1, 196, 255, 0.63);
+    box-shadow: 0 3px 8px rgb(55, 51, 51);
+}
