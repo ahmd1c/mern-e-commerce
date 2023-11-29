@@ -1,19 +1,33 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import "./product.css"
+import { useDispatch } from "react-redux"
+import { addCartItem } from "../../redux/cartReducer"
+import { ToastContainer, toast } from "react-toastify"
 
 function Product() {
     const { id } = useParams()
+    const dispatch = useDispatch()
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
+    const handleAddToCart = () => {
+        const { id , title , price , image } = product;
+        const item = { id , title , price , image , quantity : 1 };
+        dispatch(addCartItem(item));
+        toast.success("Item added to cart" , {
+            autoClose: 3000,
+        });
+    }
+
+
     useEffect(() => {
-        fetch(`https://fakestoreapi.com/products/${id}`)
+        fetch(`http://localhost:5000/api/v1/product/${id}`)
             .then(res => res.json())
             .then(
                 (result) => {
-                    setProduct(result)
+                    setProduct(result.product)
                     setLoading(false)
                 },
                 // Note: it's important to handle errors here
@@ -34,31 +48,18 @@ function Product() {
     }
     return (
         <div className="product-page-cont">
+            <ToastContainer />
             <div className="main-product">
                 <div className="product-left-side">
                     <div className="main-img">
 
                         <img src={product.image} alt={product.name} />
                     </div>
-                    <div className="mini-imgs">
-                        <div className="mini-img">
-                        <img src={product.image} alt={product.name} />
-                        </div>
-                        <div className="mini-img">
-                        <img src={product.image} alt={product.name} />
-                        </div>
-                        <div className="mini-img">
-                        <img src={product.image} alt={product.name} />
-                        </div>
-                        <div className="mini-img">
-                        <img src={product.image} alt={product.name} />
-                        </div>
-                    </div>
                 </div>
 
                 <div className="product-right-side">
                     <div className="product-title-whishlist">
-                        <h1>{product.title}</h1>
+                        <h1>{product.name}</h1>
                         
                         <span title="Add to whishlist" className="material-symbols-outlined">
                             favorite
@@ -66,24 +67,17 @@ function Product() {
 
                     </div>
                     <div className="product-info">
-                        <h3>{product.price} $</h3>
+                        <h3>{product.currentPrice} $</h3>
                         <h4 className="product-rate">
-                            {product.rating.rate}
+                        {product.avgRate.avg}
                             <span className="material-symbols-outlined rate-icon">star</span>
 
                         </h4>
                     </div>
                     <p>{product.description}</p>
                     <div className="add-to-cart">
-                        <div className="item-cart-amount">
-                            <span>Quantity:</span>
-                            <button>+</button>
-
-                            <input type="number"  min="1" max="10" />
-
-                            <button>-</button>
-                        </div>
-                        <button className="btn-primary">Add to cart</button>
+                        
+                        <button onClick={handleAddToCart} className="btn-primary">Add to cart</button>
 
                     </div>
                 </div>
