@@ -3,7 +3,7 @@ import FilterProducts from "./pageComponents/FilterProducts"
 import "./products.css"
 import { toast , ToastContainer } from "react-toastify"
 import ProductCard from "../../mainComponents/ProductCard/ProductCard"
-import {  useLocation, useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 
 function Products() {
   const [productsList, setProductsList] = useState([])
@@ -12,6 +12,13 @@ function Products() {
   
   useEffect(() => {
     const getProducts = async () => {
+        if (!categoryId){
+            const res = await fetch("http://localhost:5000/api/v1/product")
+            if (!res.ok) return toast.error("something went wrong , please try again")
+            const data = await res.json()
+            setProductsList(data.products)
+            return
+        }
         const res = await fetch(`http://localhost:5000/api/v1/product${categoryId ? `?category=${categoryId}` : ""}`)
         if (!res.ok) return toast.error("something went wrong , please try again")
         const data = await res.json()
