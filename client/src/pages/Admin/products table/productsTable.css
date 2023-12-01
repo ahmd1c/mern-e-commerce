@@ -31,19 +31,6 @@
     text-overflow: ellipsis;
 } 
 
-
-.products-table-cont table th:nth-child(1),
-.products-table-cont table td:nth-child(1){
-    width: 20px;
-    line-height: 0;
-    padding-inline: 1rem .4rem;
-}
-
-
-.products-table-cont table th:nth-child(2){
-    width: 80px;
-}
-
 .products-table-cont table th{
     text-align: left;
     border-bottom: 1px solid gray;
@@ -62,4 +49,46 @@ table .table-img img{
     gap: 15px;
 }
 
+.modal .add-product-cont form {
+    flex-direction: column !important;
+}
 
+.modal .add-product-cont form .inputs {
+    width: 100% !important;
+}
+
+.modal .add-product-cont form .images {
+    margin-inline: auto !important;
+}
+
+.modal .add-product-cont form > button {
+    height: 50px !important;
+    margin-inline: auto !important;
+}
+
+.modal .delete-form {
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.modal .delete-form p{
+    text-align: center;
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.modal .delete-form .btn-cont{
+    display: flex;
+    gap: 1.5rem;
+}
+
+.modal .delete-form .btn-cont button:first-child{
+    background-color: rgb(186, 34, 34);
+}
