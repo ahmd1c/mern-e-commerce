@@ -9,12 +9,12 @@ exports.createProductValidator = asyncHandler(async (req, res, next) => {
             .string()
             .trim()
             .min(2)
-            .max(100)
+            .max(200)
             .required()
             .messages({
                 "string.empty": "name is required",
                 "string.min": "name must be at least 2 characters",
-                "string.max": "name must be at most 100 characters",
+                "string.max": "name must be at most 200 characters",
             }),
 
         description: joi
@@ -54,15 +54,15 @@ exports.createProductValidator = asyncHandler(async (req, res, next) => {
                 "number.max": "too many of product at this time",
             }),
 
-        beforePrice: joi.number(),
+        previousPrice: joi.number(),
 
-        afterPrice: joi
+        currentPrice: joi
             .number()
-            .max(joi.ref("beforePrice"))
+            .max(joi.ref("previousPrice"))
             .required()
             .messages({
-                "number.base": "afterPrice is required",
-                "number.max": "afterPrice must be less than beforePrice",
+                "number.base": "currentPrice is required",
+                "number.max": "currentPrice must be less than previousPrice",
             }),
     });
 
@@ -80,10 +80,10 @@ exports.updateProductValidator = asyncHandler(async (req, res, next) => {
             .string()
             .trim()
             .min(2)
-            .max(100)
+            .max(200)
             .messages({
                 "string.min": "name must be at least 2 characters",
-                "string.max": "name must be at most 100 characters",
+                "string.max": "name must be at most 200 characters",
             }),
 
         description: joi
@@ -109,12 +109,12 @@ exports.updateProductValidator = asyncHandler(async (req, res, next) => {
                 "number.max": "too many of product at this time",
             }),
 
-        beforePrice: joi.number(),
+        previousPrice: joi.number(),
 
-        afterPrice: joi.number()
-            .max(joi.ref("beforePrice"))
+        currentPrice: joi.number()
+            .max(joi.ref("previousPrice"))
             .messages({
-                "number.max": "afterPrice must be less than beforePrice",
+                "number.max": "currentPrice must be less than previousPrice",
             }),
     });
 
