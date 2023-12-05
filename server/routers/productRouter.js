@@ -6,9 +6,9 @@ const {  assertCategoryandSubCategory, createProductValidator, updateProductVali
 const router = require("express").Router();
 
 router.get("/", getProducts)
-router.post("/" , verifyAdmin , uploadPhoto.single("cover") , createProductValidator , assertCategoryandSubCategory ,createProduct)
+router.post("/" , verifyAdmin , uploadPhoto.single("image") , createProductValidator , assertCategoryandSubCategory ,createProduct)
 router.get("/:productId", getProduct)
-router.put("/:productId", verifyAdmin , uploadPhoto.single("cover") , updateProductValidator , assertCategoryandSubCategory ,  updateProduct)
+router.put("/:productId", verifyAdmin , uploadPhoto.single("image") , updateProductValidator , assertCategoryandSubCategory ,  updateProduct)
 router.delete("/:productId", verifyAdmin , deleteProduct)
 
 
