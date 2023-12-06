@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
         ],
         profilePhoto: {
             type: String,
-            default: "profile.png",
+            default: "http://localhost:5000/defaultWebp.webp",
         },
         role: {
             type: String,
@@ -54,6 +54,10 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) {
+        return next();
+    }
+
     this.password = await bcrypt.hash(this.password, 11);
     next();
 });
