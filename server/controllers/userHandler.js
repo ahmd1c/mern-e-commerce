@@ -76,9 +76,12 @@ exports.signOut = asyncHandler(async (req, res, next) => {
     });
 })
 
-exports.updateUser = asyncHandler(async (req, res, next) => {
-    const { username } = req.body;
-    const user = await User.findByIdAndUpdate(req.user.id, { username }, { new: true });
+exports.updateProfile = asyncHandler(async (req, res, next) => {
+    
+    if(req.file) req.body.profilePhoto = `http://localhost:5000/${req.file?.filename} `
+    
+    const user = await User.findByIdAndUpdate(req.user.id, req.body, { new: true , runValidators: true});
+
     if (!user) {
         return res.status(404).json({
             success: false,
@@ -96,6 +99,12 @@ exports.changePassword = asyncHandler(async (req, res, next) => {
     const { currentPassword, newPassword } = req.body;
 
     const user = await User.findById(req.user.id);
+    if (!user) {
+        return res.status(404).json({
+            success: false,
+            message: "User not found"
+        })
+    }
     await bcrypt.compare(currentPassword, user.password);
 
     user.password = newPassword;
@@ -129,9 +138,9 @@ exports.deleteUser = asyncHandler(async (req, res, next) => {
 **/
 
 exports.deleteUsers = asyncHandler(async (req, res, next) => {
-    
-    const users = await User.deleteMany( { _id: { $in: req.body } } );
-    if(users.deletedCount === 0) {
+
+    const users = await User.deleteMany({ _id: { $in: req.body } });
+    if (users.deletedCount === 0) {
         return res.status(404).json({
             success: false,
             message: "Users not found"
