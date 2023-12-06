@@ -13,41 +13,41 @@ const cartSlice = createSlice({
         addCartItem: (state, action) => {
             const newItem = action.payload;
             const existingItem = state.cartItems.find(
-                (item) => item.id === newItem.id
+                (item) => item._id === newItem._id
             );
             const isExisting = existingItem !== undefined;
 
             if (isExisting) {
                 existingItem.quantity++;
-                state.cartTotalCost += newItem.price;
+                state.cartTotalCost += newItem.currentPrice;
             } else {
                 state.cartItems.push(newItem);
                 state.cartTotal += 1;
-                state.cartTotalCost += newItem.price;
+                state.cartTotalCost += newItem.currentPrice;
             }
             state.cartTotalCost = +state.cartTotalCost.toFixed(2);
             localStorage.setItem("cart", JSON.stringify(state));
         },
         decreaseCartItem: (state, action) => {
-            const id = action.payload;
-            const existingItem = state.cartItems.find((item) => item.id === id);
+            const _id = action.payload;
+            const existingItem = state.cartItems.find((item) => item._id === _id);
             if (existingItem.quantity > 1) {
                 existingItem.quantity--;
-                state.cartTotalCost -= existingItem.price;
+                state.cartTotalCost -= existingItem.currentPrice;
             } else {
-                state.cartItems = state.cartItems.filter((item) => item.id !== id);
+                state.cartItems = state.cartItems.filter((item) => item._id !== _id);
                 state.cartTotal -= 1;
-                state.cartTotalCost -= existingItem.price;
+                state.cartTotalCost -= existingItem.currentPrice;
             }
             state.cartTotalCost = +state.cartTotalCost.toFixed(2);
             localStorage.setItem("cart", JSON.stringify(state));
         },
         deleteCartItem: (state, action) => {
-            const id = action.payload;
-            const item = state.cartItems.find((item) => item.id === id);
-            state.cartTotalCost -= item.price * item.quantity;
+            const _id = action.payload;
+            const item = state.cartItems.find((item) => item._id === _id);
+            state.cartTotalCost -= item.currentPrice * item.quantity;
             state.cartTotalCost = +state.cartTotalCost.toFixed(2);
-            state.cartItems = state.cartItems.filter((item) => item.id !== id);
+            state.cartItems = state.cartItems.filter((item) => item._id !== _id);
             state.cartTotal -= 1;
             localStorage.setItem("cart", JSON.stringify(state));
         },
@@ -62,7 +62,7 @@ const cartSlice = createSlice({
             if (cart) {
                 state.cartItems = cart.cartItems;
                 state.cartTotalCost = +cart.reduce(
-                    (acc, item) => acc + item.price * item.quantity,
+                    (acc, item) => acc + item.currentPrice * item.quantity,
                     0
                 ).toFixed(2);
             }
