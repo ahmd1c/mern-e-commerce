@@ -31,7 +31,7 @@ exports.verifyToken = async (req, res, next) => {
 exports.verifyAdmin = asyncHandler(async (req, res, next) => {
     console.log("admin");
     this.verifyToken(req , res , ()=>{
-        if (req.user.role !== "admin") {
+        if (req.user?.role !== "admin") {
             return res.status(401).json({
                 success: false,
                 message: "unauthorized"
