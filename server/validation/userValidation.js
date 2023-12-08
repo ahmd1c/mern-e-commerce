@@ -83,7 +83,7 @@ exports.changePasswordValidation = asyncHandler(async (req, res, next) => {
                 'string.pattern.base': "invalid password"
             }),
 
-        repeatNewPassword: joi.valid(joi.ref('password')).messages({
+        repeatNewPassword: joi.valid(joi.ref('newPassword')).messages({
             'any.only': 'Passwords do not match'
         }),
 
