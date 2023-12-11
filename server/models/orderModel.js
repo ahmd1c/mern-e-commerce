@@ -8,35 +8,45 @@ const orderSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
+    stripeSessionId: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+    },
+    
     products: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Product',
             required: true,
         }],
-    totalProducts: {
-        type : Number,
-        required: true,
-        min : [1 , "at least 1 product required"]
-    },
+    // subTotalPrice: {
+    //     type: Number,
+    //     required: true,
+    // },
     totalPrice: {
         type : Number,
         required: true,
     },
     country : {
         type: String,
-        required: true
+        // required: true
     },
     city : {
         type: String,
-        required: true,
+        // required: true,
     },
     address : {
         type: String,
-        required: true,
+        // required: true,
         trim : true,
         minlength : [5 , "to short address"],
         maxlength : [100, "to long address"]
-
+    },
+    status : {
+        type: String,
+        enum : [ "processing" , "shipped" , "delivered" , "cancelled"],
+        default : "processing",
     }
 },{timestamps : true})
 
