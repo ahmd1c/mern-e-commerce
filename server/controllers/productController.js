@@ -7,25 +7,25 @@ exports.getProducts = asyncHandler(async (req, res) => {
     let productsQuery = Product.find();
 
     if (req.query.category) {
-        productsQuery = Product.find({ category: req.query.category })
+        productsQuery = productsQuery.find({ category: req.query.category })
     }
 
     if (req.query.subCategory) {
-        productsQuery = Product.find({ category: req.query.subCategory })
+        productsQuery = productsQuery.find({ subCategory: req.query.subCategory })
     }
 
     if (req.query.sort) {
         
-        const sort = req.query.sort.split(",").join(" ")
+        const sort = req.query.sort.split(" ")
         console.log(sort);
-        productsQuery = productsQuery.sort(sort)
+        productsQuery = productsQuery.sort({ [sort[0]]: sort[1] })
 
     }else{
         productsQuery = productsQuery.sort("-createdAt")
     }
 
     if (req.query.minPrice && req.query.maxPrice) {
-        productsQuery = productsQuery.find({ afterPrice: { $gte: req.query.minPrice, $lte: req.query.maxPrice } })
+        productsQuery = productsQuery.find({ currentPrice: { $gte: req.query.minPrice, $lte: req.query.maxPrice } })
     }
 
     if (req.query.keyword) {
@@ -47,7 +47,7 @@ exports.getProducts = asyncHandler(async (req, res) => {
     productsQuery = productsQuery.skip(skip).limit(limit);
 
     // EXECUTE QUERY
-
+    productsQuery = productsQuery.populate("category subCategory");
     const products = await productsQuery;
     
     // PAGINATION INFO
@@ -88,7 +88,7 @@ exports.getProduct = asyncHandler(async (req, res) => {
 })
 
 exports.createProduct = asyncHandler(async (req, res) => {
-    const product = await Product.create({...req.body , [req.file?.fieldname]: req.file?.filename});
+    const product = await Product.create({...req.body , [req.file?.fieldname]: `http://localhost:5000/${req.file?.filename}` });
     res.status(201).json(product);
 })
 
@@ -116,6 +116,7 @@ exports.updateProduct = asyncHandler(async (req, res) => {
 
     
 })
+
 
 exports.deleteProduct = asyncHandler(async (req, res) => {
 
