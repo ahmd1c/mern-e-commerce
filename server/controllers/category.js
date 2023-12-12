@@ -3,12 +3,28 @@ const asyncHandler = require("../utils/asyncHandler");
 const Product = require("../models/productModel");
 
 exports.getCategories = asyncHandler(async (req, res) => {
-    const categories = await Category.find();
+    const categories = await Category.find({parentCategory : null});
     res.status(200).json({
         success: true,
         categories,
     });;
 
+})
+
+exports.getSubCategories = asyncHandler(async (req, res) => {
+    const subCategories = await Category.find({parentCategory : req.params.id});
+    res.status(200).json({
+        success: true,
+        subCategories,
+    });
+})
+
+exports.getAllSubCategories = asyncHandler(async (req, res) => {
+    const subCategories = await Category.find({parentCategory : {$exists : true}}).populate("parentCategory" , "name");
+    res.status(200).json({
+        success: true,
+        subCategories,
+    });
 })
 
 exports.createCategory = asyncHandler(async (req, res) => {
