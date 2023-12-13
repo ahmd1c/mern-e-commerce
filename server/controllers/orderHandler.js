@@ -151,7 +151,7 @@ exports.orderCancel = asyncHandler(async (req, res , next) => {
 
 
 exports.getUserOrder = asyncHandler(async (req, res , next) => {
-    const order = await Order.findOne({ user: req.user.id });
+    const order = await Order.findOne({ user: req.user.id }).select("-stripeSessionId");
     if (!order) {
         return res.status(404).json({
             success: false,
@@ -166,7 +166,8 @@ exports.getUserOrder = asyncHandler(async (req, res , next) => {
 
 
 exports.getUserOrders = asyncHandler(async (req, res , next) => {
-    const orders = await Order.find({ user: req.user.id });
+    const orders = await Order.find({ user: req.user.id }).select("-stripeSessionId").populate("products" , "name currentPrice image");
+    console.log(orders);
     if (!orders) {
         return res.status(404).json({
             success: false,
@@ -181,7 +182,7 @@ exports.getUserOrders = asyncHandler(async (req, res , next) => {
 
 
 exports.getAllOrders = asyncHandler(async (req, res , next) => {
-    const orders = await Order.find().sort({ createdAt: -1 });
+    const orders = await Order.find().sort({ createdAt: -1 }).populate("products" , "name currentPrice image");;
     if (!orders) {
         return res.status(404).json({
             success: false,
@@ -201,7 +202,7 @@ exports.updateOrder = asyncHandler(async (req, res , next) => {
 
     const { status } = req.body; 
     // CHECK IF STATUS IS VALID 
-    if (!["processing", "shipped", "delivered"].includes(status)) {
+    if (!["processing", "shipped", "delivered" , "cancelled"].includes(status)) {
         return res.status(400).json({
             success: false,
             message: "Invalid status"
